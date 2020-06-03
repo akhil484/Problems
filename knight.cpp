@@ -34,8 +34,7 @@ int knight(int i, int j, int n)
 	}
 
 	
-		//board[0][0] = 0;
-		cout<<n<<endl;
+		board[0][0] = 0;	//initialization inside recursive function
 		for(int k=0;k<8;k++)
 		{
 			int x = i+r_move[k];
@@ -64,7 +63,7 @@ int main()
 			board[i][j] = -1;
 		}		
 	}
-	board[0][0] = 0;
+	//board[0][0] = 0;		//initialization inside main funtion
 	res = knight(0,0,1);
 	if(res == 0)
 	{
