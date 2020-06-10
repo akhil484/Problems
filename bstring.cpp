@@ -1,3 +1,6 @@
+//Generate all binary strings without consecutive 1’s
+//Given a integer K. Task is Print All binary string of size K (Given number).
+
 #include<iostream>
 using namespace std;
 
