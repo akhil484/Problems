@@ -4,7 +4,7 @@ using namespace std;
 class graph
 {
 	int v;
-	list<int> *adj;
+	list<int> *adj;					//declares a list of type integers.
 
 	void dfsUtil(int s, bool visited[]);
 public:
@@ -20,7 +20,7 @@ public:
 graph::graph(int v)
 {
 	this->v=v;
-	adj = new list<int>[v];
+	adj = new list<int>[v];				//creates an array of type list of size V
 }
 
 void graph::addNode(int v,int n)
