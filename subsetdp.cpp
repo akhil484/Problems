@@ -8,7 +8,7 @@ bool check(int a[], int n)
         sum+=a[i];
     if(sum%2!=0)
         return false;
-    bool part[sum/2 + 1][n+1];
+    bool part[sum/2 + 1][n+1];				//part[i][j] will be true if a subset of {a[0], a[1], ....,a[j-1]} has sum equal to i
     for(int i=0;i<=n;i++)
         part[0][i] = true;
     for(int i=1;i<=sum/2;i++)
@@ -22,7 +22,7 @@ bool check(int a[], int n)
             part[i][j] = part[i][j-1];
             if(i>=a[j-1])
             {
-                part[i][j] = part[i][j] || part[i-a[j-1]][j-1];
+                part[i][j] = part[i][j] || part[i-a[j-1]][j-1];		//if i>a[j-1] then check if there exist a subset of {a[0], a[1], ....,a[j-1]} that has sum=i-a[j-1]
             }
         }
     }
