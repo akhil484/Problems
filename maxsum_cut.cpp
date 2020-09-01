@@ -11,7 +11,7 @@ int main() {
 	    cin>>n;
 	    cin>>x>>y>>z;
 	    int a[n+1];
-	    memset(a,-1,sizeof(a));
+	    memset(a,-1,sizeof(a));				//-1 because there will be lengths not equal to i+p,i+q,i+r so they should be discarded
 	    a[0] = 0;
 	    for(int i=0;i<=n;i++)
 	    {
