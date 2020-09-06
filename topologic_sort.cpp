@@ -16,7 +16,7 @@ public:
 graph::graph(int v)
 {
 	this->v = v;
-	adj = new list<int>[v];
+	adj = new list<int>[v];				//An array of type list‹int› will be created and its size will be v
 }
 
 void graph::addedge(int u, int w)
