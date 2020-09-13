@@ -43,7 +43,7 @@ vector<long> riddle(vector<long> arr) {
     {
         res.push_back(0);
     }
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++)                //As window sizes are increasing, the value of maximum of minimum is decreasing
     {
         int len = right[i] - left[i] - 1;
         res[len] = max(res[len],arr[i]);
