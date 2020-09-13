@@ -148,10 +148,9 @@ void printboundaryright(Node *root,vector<int> &v)
         // cout<<root->data<<" ";
         v.push_back(root->data);
     }
-    else if(root->right)
+    else if(root->left)
     {
         printboundaryright(root->left,v);
-        // 
         v.push_back(root->data);
     }
 }
@@ -161,7 +160,7 @@ void printleaf(Node *root,vector<int> &v)
     if(root==NULL)
         return;
     printleaf(root->left,v);
-    if(!root->left && root->right)
+    if(!root->left && !root->right)
         cout<<root->data<<" ";
         
     printleaf(root->right,v);
