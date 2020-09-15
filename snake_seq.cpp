@@ -10,7 +10,7 @@ void sequence(int a[M][N])
 	int max_len=0, max_row,max_col;
 	for(int i=0;i<M;i++)
 	{
-		for(int j=0;j<N;j++)
+		for(int j=0;j<N;j++)		//We will look for the maximum length upto that index.
 		{
 			if(i||j)
 			{
