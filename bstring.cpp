@@ -1,48 +1,51 @@
-//Generate all binary strings without consecutive 1’s
-//Given a integer K. Task is Print All binary string of size K (Given number).
-
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-void print(int a[],int k)
-{
-	for(int i=0;i<k;i++)
-	{
-		cout<<a[i];
-	}
-	cout<<"\n";
-}
-
-void bstring(int k,int a[], int len)
-{
-	if(len == k)
-	{
-		print(a,k);
-		return;
-	}
-	if(a[len-1]==1)
-	{
-		a[len] = 0;
-		bstring(k,a,len+1);
-	}
-	if(a[len-1] == 0)
-	{
-		a[len] = 0;
-		bstring(k,a,len+1);
-		a[len] = 1;
-		bstring(k,a,len+1);
-	}
-}
 
 int main()
 {
-	int k;
-	cout<<"Enter the value of k"<<" ";
-	cin>>k;
-	int len=1;
-	int a[k];
-	a[0]=0;
-	bstring(k,a,len);
-	a[0]=1;
-	bstring(k,a,len);
+	int tc;
+	cin>>tc;
+	for(int t=0;t<tc;t++)
+	{
+	int n;
+	string s;
+	cin>>n>>s;
+	vector<int> ans(n);
+	vector<int> p0,p1;
+	//vector<int> p1;
+	for(int i=0;i<n;i++)
+	{
+		int newpos = p1.size() + p0.size();
+		if(s[i]=='0')
+		{
+			if(p1.empty())
+				p0.push_back(newpos);
+			else
+			{
+				newpos = p1.back();
+				p1.pop_back();
+				p0.push_back(newpos);
+			}
+		}
+		else
+		{
+			if(p0.empty())
+				p1.push_back(newpos);
+			else
+			{
+				newpos = p0.back();
+				p0.pop_back();
+				p1.push_back(newpos);
+			}
+		}
+		ans[i] = newpos;
+		
+	}
+	cout<<p0.size()+p1.size()<<endl;
+		for(int i=0;i<n;i++)
+			cout<<ans[i]+1<<" ";
+		cout<<"\n";
+	} 
+	return 0;
 }
