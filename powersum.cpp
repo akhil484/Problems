@@ -12,7 +12,9 @@ int ps(int x,int n,int index)
     	return 0;
 	else if(value==0)
     	return 1;
-    
+    //At each value, you have two options. 1. Choose that value 2. Skip that value.
+    //If you choose it then call the function after subtracting pow(index,n) from x
+    //if you don't choose it, then call the funtion with same x value but incrementing x.
     else 
     	return ps(x,n,index+1) + ps(value,n,index+1);
 }
