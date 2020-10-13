@@ -1,32 +1,24 @@
-#include<iostream>
-#include<math.h>
+#include<bits/stdc++.h>
 using namespace std;
-int count;
 
-void powers(int x, int n, int i)
+int ps(int x,int n,int index)
 {
-	if(x>0 && x<2)
-	{
-		count++;
-		return;
-	}
-
-	while(i<x/2)
-	{
-		int temp=x;
-		x = x-pow(i,n);
-		powers(x,n,i+1);
-		x=temp;
-		i++;
-	}
+	int value = (x - pow(index, n));
+	if(value<0)
+    	return 0;
+	else if(value==0)
+    	return 1;
+    
+    else 
+    	return ps(x,n,index+1) + ps(value,n,index+1);
 }
 
 int main()
 {
 	int x,n;
-	cout<<"Enter the number and power"<<" ";
-	cin>>x>>n;
-	powers(x,n,1);
-	cout<<count;
-
+	cin>>x;
+	cin>>n;
+	int c=ps(x,n,1);
+	cout<<c<<"\n";
+	return 0;
 }
