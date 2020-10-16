@@ -1,3 +1,23 @@
+//Find the number of ways that a given integer,x, can be expressed as the sum of the nth powers of unique, natural numbers.
+//For example, if x=13 and n=2, we have to find all combinations of unique squares adding up to 13. The only solution is 2^2+3^2.
+//Problem link:- https://www.hackerrank.com/challenges/the-power-sum/problem
+
+
+// Sample Input:
+// x=10, n=2
+// Output:
+// 1 (1^2+3^2)
+
+// Sample Input:
+// x=100, n=3
+// Output
+// 1 (1^3+2^3+3^3+4^3)
+
+
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
