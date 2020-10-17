@@ -38,7 +38,7 @@ public:
 //                 }
 //             }
 //         }
-//         cout<<s.substr(start,start+max_len-1)<<endl;
+//         cout<<s.substr(start,max_len)<<endl;
         
         int start=0,max_len=1;
         int high,low;
