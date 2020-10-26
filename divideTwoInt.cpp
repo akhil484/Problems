@@ -11,7 +11,7 @@ public:
             if(t+(m<<i)<=n)
             {
                 t+=(m<<i);
-                q=q+(1LL<<i);
+                q=q+(1LL<<i);               //1LL converts one to long long because for higher values of i it will give wrong answer if 1 is int.(1*2^i)
             }
         }
         q=sign*q;
