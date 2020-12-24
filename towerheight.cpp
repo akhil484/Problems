@@ -38,6 +38,7 @@ int main() {
 	        if(a[i]<minval1)
 	            minval1=a[i];
 	    }
+		#(maxval-minval) case occurs when either we subtract k or add k to all elements of the array
 	    cout<<min(maxval-minval,maxval1-minval1)<<endl;
 	}
 	return 0;
