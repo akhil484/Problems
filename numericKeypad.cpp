@@ -59,7 +59,43 @@ class Solution{
             tc+=count[i][N];
         }
         return tc;
+        
+		
+	//2nd method with O(1) space
+		// Your code goes here
+		list<int> mylist[10];
+		mylist[0].assign({ 0, 8 }); 
+    mylist[1].assign({ 1, 2, 4 }); 
+    mylist[2].assign({ 2, 1, 3, 5 }); 
+    mylist[3].assign({ 3, 6, 2 }); 
+    mylist[4].assign({ 4, 1, 7, 5 }); 
+    mylist[5].assign({ 5, 4, 6, 2, 8 }); 
+    mylist[6].assign({ 6, 3, 5, 9 }); 
+    mylist[7].assign({ 7, 4, 8 }); 
+    mylist[8].assign({ 8, 5, 0, 7, 9 }); 
+    mylist[9].assign({ 9, 6, 8 }); 
+    
+      // Storing values for n = 1 
+    long long arr[10] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; 
+    for(int i=2;i<=N;i++)
+    {
+        long long arr2[10]={0};
+        for(int j=0;j<10;j++)
+        {
+            for(int x:mylist[j])
+                arr2[x]+=arr[j];
+        }
+        for(int j=0;j<10;j++)
+            arr[j]=arr2[j];
+    }
+    long long tc=0;
+        for(int i=0;i<10;i++)
+        {
+            tc+=arr[i];
+        }
+        return tc;
             
+        
         
 	}
 
