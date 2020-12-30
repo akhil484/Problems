@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	//code
+	int tc;
+	cin>>tc;
+	for(int t=0;t<tc;t++)
+	{
+	    int n,k,j=0,c=0;
+	    cin>>n;
+	    int a[n];
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>a[i];
+	    }
+	    cin>>k;
+	    for(int i=0;i<n;i++)
+	    {
+	        if(a[i]<=k)
+	            j++;
+	    }
+	    for(int i=0;i<j;i++)
+	    {
+	        if(a[i]>k)
+	            c++;
+	    }
+	    int ans=c;
+	    for(int i=0,y=j;y<n;i++,y++)
+	    {
+	        if(a[i]>k)
+	            c--;
+	        if(a[y]>k)
+	            c++;
+	        ans=min(ans,c);
+	    }
+	    cout<<ans<<endl;
+	}
+	return 0;
+}
