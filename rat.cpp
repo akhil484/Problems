@@ -86,3 +86,47 @@ int main()
 		print_solution();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void mazeHelp(int m[MAX][MAX], int n, int i, int j, vector<string> &pp, string path)
+{
+    if(i>=n || i<0 || j>=n || j<0 || m[i][j]!=1)
+        return;
+    if(i==n-1 && j==n-1)
+    {
+        pp.push_back(path);
+        return;
+    }
+    
+    m[i][j]=-1;
+    mazeHelp(m,n,i+1,j,pp,path+'D');
+    mazeHelp(m,n,i,j+1,pp,path+'R');
+    mazeHelp(m,n,i,j-1,pp,path+'L');
+    mazeHelp(m,n,i-1,j,pp,path+'U');
+    m[i][j]=1;
+}
+
+vector<string> printPath(int m[MAX][MAX], int n) {
+    // Your code goes here
+    
+    vector<string> pp;
+    string s="";
+    mazeHelp(m,n,0,0,pp,s);
+    sort(pp.begin(),pp.end());
+    return pp;
+}
