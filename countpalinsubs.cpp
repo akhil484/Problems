@@ -22,30 +22,44 @@ cout<<countPS(str)<<endl;
 
 
 /*You are required to complete below method */
-int countPS(string str)
+int countPS(string s)
 {
    //Your code here
-   int n=str.length();
-   int dp[2][n];
-   memset(dp,0,sizeof(dp));
-   
-   for(int i=n-1;i>=0;i--)
-   {
-       for(int j=i;j<n;j++)
-       {
-           if(i==j)
-            dp[i%2][j]=1;
-           else if(str[i]==str[j])
-           {
-               dp[i%2][j] = 1+ dp[1-i%2][j] + dp[i%2][j-1];
-           }
-           else
-           {
-               dp[i%2][j] = dp[1-i%2][j] + dp[i%2][j-1] - dp[1-i%2][j-1];
-           }
-            
-       }
-   }
-   return dp[0][n-1];
+          int n=s.length();
+        int c=0;
+         int dp[n][n];
+        for(int g=0;g<n;g++)
+        {
+            for(int i=0,j=g;j<n;i++,j++)
+            {
+                if(g==0)
+                {
+                    dp[i][j]=true;
+                }
+                else if(g==1)
+                {
+                    if(s[i]==s[j])
+                    {
+                        dp[i][j]=true;
+                    }
+                    else
+                        dp[i][j]=false;
+                }
+                else
+                {
+                    if(s[i]==s[j]&&dp[i+1][j-1])
+                    {
+                        dp[i][j]=true;
+                    }
+                    else
+                    {
+                        dp[i][j]=false;
+                    }
+                }
+                if(dp[i][j]==true)
+                    c++;
+            }
+        }
+        return c;
 }
  
