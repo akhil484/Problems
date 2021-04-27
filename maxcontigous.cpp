@@ -1,61 +1,32 @@
-#include<iostream>
-using namespace std;
-
-void heapify(int a[],int n,int i)
-{
-	int largest=i;
-	int l = 2*i+1;
-	int r = 2*i+2;
-	if(l<n&&a[largest]<a[l])
-	{
-		largest=l;
-	}
-	if(r<n&&a[largest]<a[r])
-	{
-		largest=r;
-	}
-	if(largest!=i)
-	{
-		int temp=a[largest];
-		a[largest]=a[i];
-		a[i]=temp;
-		heapify(a,n,largest);
-	}
-}
-
-void maxof_sizek(int a[], int n, int k)
-{
-	int start=0,end=(k-1);
-	int h[k];
-	for(int i=start;i<=end;i++)
-		h[i] = a[i];
-
-	heapify(h,k,0);
-	cout<<h[0]<<" ";
-	//last = a[start];
-    start+= 1;
-   end+= 1;
-    //nexts = a[end];
-    while(end<n)
-    {
-    	for(int i=0;i<k;i++)
-    	{
-    		h[i] = a[i+start];
-    	}
-    	heapify(h,k,0);
-		cout<<h[0]<<" ";
-		start+= 1;
-   		end+= 1;
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    //     //O(NlogN)
+    //      vector<int> result;
+    // if (k == 0) return result;
+    // priority_queue<pair<int, int>> w;
+    // for (int i = 0, n = (int)nums.size(); i < n; i++) {
+    //     while (!w.empty() && w.top().second <= i-k)
+    //         w.pop();
+    //     w.push(make_pair(nums[i],i));
+    //     if (i >= k-1)       //at this point heap will have at least k characters.
+    //         result.push_back(w.top().first);
+    // }
+    // return result;
+        
+        //O(N) We are adding to last of list and popping from front and keeping it in descending order
+         vector<int> result;
+    if (k == 0) return result;
+    deque<int> w;
+    for (int i = 0, n = (int)nums.size(); i < n; i++) {
+        while (!w.empty() && w.front() <= i-k)
+            w.pop_front();
+        while (!w.empty() && nums[w.back()] <= nums[i])
+            w.pop_back();
+        w.push_back(i);
+        if (i >= k-1)
+            result.push_back(nums[w.front()]);
+        }
+    return result;
     }
-
-	
-}
-
-int main()
-{
-	int a[]={1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	int n=sizeof(a)/sizeof(a[0]);
-	int k=3;
-	maxof_sizek(a,n,k);
-	return 0;
-}
+};
