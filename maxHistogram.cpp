@@ -23,7 +23,7 @@ long long getMaxArea(long long arr[], int n){
         {
             tp=s.top();
             s.pop();
-            at = arr[tp]*(s.empty()?i:(i-s.top()-1));
+            at = arr[tp]*(s.empty()?i:(i-s.top()-1));			//width is right boundary-left boundary+1
             if(max_area<at)
                 max_area=at;
         }
