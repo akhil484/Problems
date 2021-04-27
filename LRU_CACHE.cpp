@@ -44,7 +44,9 @@ void LRUCache::refer(int x)
 
 			// Erase the last 
 			ma.erase(last); 
-		} 
+		}
+		else
+			pg++;
 	} 
 
 	// present in cache 
