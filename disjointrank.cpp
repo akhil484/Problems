@@ -69,3 +69,62 @@ int main()
 		cout<<"False"<<endl;
 	return 0;
 }
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// int parent[10000];
+// int rank[10000];
+
+// void makeset(){
+//     for(int i=1;i<=n;i++)
+//     {
+//         parent[i]=i;
+//         rank[i]=0;
+//     }
+// }
+
+// int findparent(int node)
+// {
+//     if(node==parent[node])
+//         return node;
+//     return parent[node]=findparent(parent[node]);
+// }
+
+// void union(int u,int v)
+// {
+//     u=findparent(u);
+//     v=findparent(v);
+//     if(rank[u]<rank[v])
+//         parent[u]=v;
+//     else if(rank[u]>rank[v])
+//     {
+//         parent[v]=u;
+//     }
+//     else
+//     {
+//         parent[v]=u;
+//         rank[u]++;
+//     }
+// }
+
+// void main()
+// {
+//     makeset();
+//     int m;
+//     cin>>m;
+//     while(--m)
+//     {
+//         int u,v;
+//         cin>>u>>v;
+//         union(u,v);
+//         //if 2 and 3 belongs to same component or not
+//         if(findparent(2)!=findparent(3))
+//             cout<<"No"<<endl;
+//         else
+//             cout<<"Yes"<<endl;
+//     }
+// }
