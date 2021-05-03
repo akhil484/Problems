@@ -1,118 +1,62 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 struct node {
-    int parent;
-    int rank;
+    int u;
+    int v;
+    int wt; 
+    node(int first, int second, int weight) {
+        u = first;
+        v = second;
+        wt = weight;
+    }
 };
-struct Edge {
-    int src;
-    int dst;
-    int wt;
-};
 
-vector<node> dsuf;
-vector<Edge> mst;
-//FIND operation
-int find(int v)
-{
-    if(dsuf[v].parent==-1)
-        return v;
-    return dsuf[v].parent=find(dsuf[v].parent); //Path Compression
+bool comp(node a, node b) {
+    return a.wt < b.wt; 
 }
 
-void union_op(int fromP,int toP)
-{
-    //fromP = find(fromP);
-    //toP = find(toP);
+int findPar(int u, vector<int> &parent) {
+    if(u == parent[u]) return u; 
+    return findPar(parent[u], parent); 
+}
 
-    //UNION by RANK
-    if(dsuf[fromP].rank > dsuf[toP].rank)   //fromP has higher rank
-        dsuf[toP].parent = fromP;
-    else if(dsuf[fromP].rank < dsuf[toP].rank)  //toP has higher rank
-        dsuf[fromP].parent = toP;
-    else
-    {
-        //Both have same rank and so anyone can be made as parent
-        dsuf[fromP].parent = toP;
-        dsuf[toP].rank +=1;     //Increase rank of parent
+void unionn(int u, int v, vector<int> &parent, vector<int> &size) {
+    u = findPar(u, parent);
+    v = findPar(v, parent);
+    if(size[u] < size[v]) {
+        parent[u] = v;
+        size[v] += size[u]; 
+    } else {
+        parent[v] = u; 
+        size[u] += size[v]; 
     }
 }
-
-bool comparator(Edge a,Edge b)
-{
-    return a.wt < b.wt;
+int main(){
+	int N,m;
+	cin >> N >> m;
+	vector<node> edges; 
+	for(int i = 0;i<m;i++) {
+	    int u, v, wt;
+	    cin >> u >> v >> wt; 
+	    edges.push_back(node(u, v, wt)); 
+	}
+	sort(edges.begin(), edges.end(), comp); 
+	
+	vector<int> parent(N);
+	for(int i = 0;i<N;i++) 
+	    parent[i] = i; 
+	vector<int> size(N, 0); 
+	
+	int cost = 0;
+	vector<pair<int,int>> mst; 
+	for(auto it : edges) {
+	    if(findPar(it.v, parent) != findPar(it.u, parent)) {
+	        cost += it.wt; 
+	        mst.push_back({it.u, it.v}); 
+	        unionn(it.u, it.v, parent, size); 
+	    }
+	}
+	cout << cost << endl;
+	for(auto it : mst) cout << it.first << " - " << it.second << endl; 
+	return 0;
 }
-/*
-void printEdgeList(vector<Edge>& edge_List)
-{
-    for(auto p: edge_List)
-        cout<<"src: "<<p.src<<"  dst: "<<p.dst<<"  wt: "<<p.wt<<"\n";
-    cout<<"============================================================\n";
-}
-*/
-void Kruskals(vector<Edge>& edge_List,int V,int E)
-{
-    //cout<<"edge_List before sort\n";
-    //printEdgeList(edge_List);
-    sort(edge_List.begin(),edge_List.end(),comparator);
-    //cout<<"edge_List after sort\n";
-    //printEdgeList(edge_List);
-
-    int i=0,j=0;
-    while(i<V-1 && j<E)
-    {
-        int fromP = find(edge_List[j].src); //FIND absolute parent of subset
-        int toP = find(edge_List[j].dst);
-        
-        if(fromP == toP)
-        {   ++j;    continue;   }
-
-        //UNION operation
-        union_op(fromP,toP);    //UNION of 2 sets
-        mst.push_back(edge_List[j]);
-        ++i;
-    }
-}
-//Display the formed MST
-void printMST(vector<Edge>& mst)
-{
-    cout<<"MST formed is\n";
-    for(auto p: mst)
-        cout<<"src: "<<p.src<<"  dst: "<<p.dst<<"  wt: "<<p.wt<<"\n";
-}
-
-int main()
-{
-    int E;  //No of edges
-    int V;  //No of vertices (0 to V-1)
-    cin>>E>>V;
-
-    dsuf.resize(V); //Mark all vertices as separate subsets with only 1 element
-    for(int i=0;i<V;++i)    //Mark all nodes as independent set
-    {
-        dsuf[i].parent=-1;
-        dsuf[i].rank=0;
-    }
-
-    vector<Edge> edge_List; //Adjacency list
-    Edge temp;
-    for(int i=0;i<E;++i)
-    {
-        int from,to,wt;
-        cin>>from>>to>>wt;
-        temp.src = from;
-        temp.dst = to;
-        temp.wt = wt;
-        edge_List.push_back(temp);
-    }
-
-    Kruskals(edge_List,V,E);
-    printMST(mst);
-    
-    return 0;
-}
-
-//TIME COMPLEXITY: O(ElogE + ElogV)
-//ElogE for sorting E edges in edge_list
-//ElogV for applying FIND & UNION operations on E edges having V vertices
