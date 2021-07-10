@@ -37,7 +37,7 @@
 // 	return 0;
 // }
 
-
+//index of dp is the length. For every a[i], see the upper bound.
 int dp[n+1];
        for(int i=0;i<n;i++)
     {    dp[i]=INT_MAX;}
