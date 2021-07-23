@@ -3,22 +3,14 @@ using namespace std;
 
 int kad(int arr[], int r)
 {
-    int m=INT_MAX,count=0,max_so_far=0,max_ending_here=0;
-    for(int i=0;i<r;i++)
+    int max_so_far=arr[0],max_ending_here=arr[0];
+    for(int i=1;i<r;i++)
     {
-        if(arr[i]<0)
-            count++;
-        if(arr[i]<m)
-            m=arr[i];
-        max_ending_here+=arr[i];
-        if(max_ending_here<0)
-            max_ending_here=0;
-        if(max_so_far<max_ending_here)
-            max_so_far=max_ending_here;
+        
+        max_ending_here=max(arr[i],max_ending_here+arr[i]);
+        max_so_far=max(max_so_far,max_ending_here);
     }
-    if(count==r)
-        return m;
-    else
+    
         return max_so_far;
     
 }
@@ -39,18 +31,20 @@ int main() {
 	            cin>>a[i][j];
 	        }
 	    }
-	    int ans=INT_MIN;
-	    int arr[r];
-	    for(int i=0;i<c;i++)
-	    {
-	        memset(arr,0,sizeof(arr));
-	        for(int j=i;j<c;j++)
-	        {
-	            for(int k=0;k<r;k++)
-	                arr[k]+=a[k][j];
-	            ans=max(ans,kad(arr,r));
-	        }
-	    }
+	   int ans=INT_MIN;
+        int arr[C];
+        for(int i=0;i<R;i++)
+        {
+            memset(arr,0,sizeof(arr));
+            for(int j=i;j<R;j++)
+            {
+                for(int k=0;k<C;k++)
+                {
+                    arr[k]+=M[j][k];
+                }
+                ans=max(ans,kad(arr,C));
+            }
+        }
 	    cout<<ans<<endl;
 	}
 	return 0;
