@@ -35,8 +35,9 @@ int main()
 			cin>>num;
 			a.push_back(num);
 		}
-		long long l=0,h=1000000000,dis=0;
+		
 		sort(a.begin(),a.end());
+		long long l=a[0],h=a[n-1],dis=0;
 		while(l<=h)
 		{
 			mid=l+(h-l)/2;
