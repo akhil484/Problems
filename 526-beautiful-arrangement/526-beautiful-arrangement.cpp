@@ -1,20 +1,22 @@
 class Solution {
 public:
     int count = 0;
-    bool seen[16]={};
+    int seen=0;
     int dfs(int n, int pos=1)
     {
         if(pos>n)
         {
             return count++;
         }
+        int bit;
         for(int i=1;i<=n;i++)
         {
-            if(!seen[i]&&(i%pos==0||pos%i==0))
+            bit = 1<<i;
+            if(!(seen&bit)&&(i%pos==0||pos%i==0))
             {
-                seen[i]=1;
+                seen^=bit;
                 dfs(n,pos+1);
-                seen[i]=false;
+                seen^=bit;
             }
         }
         return count;
