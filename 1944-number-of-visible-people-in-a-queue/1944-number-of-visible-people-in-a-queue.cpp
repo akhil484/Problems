@@ -5,8 +5,13 @@ public:
         
         int n = heights.size();
         vector<int> res(n,0);
-        for(int i=n-1;i>=0;i--)
+        for(int i=0;i<n;i++)
         {
+            while(!s.empty()&&heights[s.top()]<=heights[i])
+                {
+                    res[s.top()]++;
+                    s.pop();
+                }
             // int next=-1;
             // int temp=0;
             // for(int j=i+1;j<n;j++)
@@ -23,24 +28,11 @@ public:
             //     }
             // }
             // res[i]=temp;
-            if(s.empty())
-                s.push(i);
-            else if(heights[s.top()]>heights[i])
-            {
-                res[i]++;
-                s.push(i);
-            }
-            else
-            {
-                while(!s.empty()&&heights[s.top()]<heights[i])
-                {
-                    res[i]++;
-                    s.pop();
-                }
-                if(!s.empty()&&heights[s.top()]>heights[i])
-                    res[i]++;
-                s.push(i);
-            }
+            if(!s.empty())
+                res[s.top()]++;
+            
+            s.push(i);
+            
         }
         return res;
     }
