@@ -1,5 +1,6 @@
 class Solution {
 public:
+    int dp[256] = {[0 ... 255] = -1};
     int score(vector<int> student, vector<int> mentor)
     {
         int score=0;
@@ -12,6 +13,9 @@ public:
     {
         if(i==students.size())
             return 0;
+        if(dp[mask]!=-1){
+            return dp[mask];
+        }
         int ans=0;
         for(int j=0;j<mentors.size();j++)
         {
@@ -21,7 +25,7 @@ public:
                 ans = max(ans,score(students[i],mentors[j])+makeCombinations(students,mentors,i+1,new_mask));
             }
         }
-        return ans;
+        return dp[mask]=ans;
     }
     
     int maxCompatibilitySum(vector<vector<int>>& students, vector<vector<int>>& mentors) {
