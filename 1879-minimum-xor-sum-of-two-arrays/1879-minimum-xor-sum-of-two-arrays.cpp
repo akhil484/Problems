@@ -11,8 +11,10 @@ public:
         int ans=INT_MAX;
         for(int j=0;j<nums2.size();j++)
         {
+            //if jth bit is 1 then continue(means number at jth index is already taken)
             if((mask>>j)&1)
                 continue;
+            //make jth bit of mask 1 
             int new_mask = (mask|(1<<j));
             ans = min(ans,(nums1[index]^nums2[j])+calculatesum(nums1,nums2,index+1,new_mask));
         }
