@@ -43,38 +43,8 @@ public:
             graph[dislikes[i][0]].push_back(dislikes[i][1]);
             graph[dislikes[i][1]].push_back(dislikes[i][0]);
         }
-//         queue<int> q;
         
-//         for(int i=1;i<=n;i++)
-//         {
-//             if(vis[i]==0)
-//             {
-//                 color[i]=0;
-//                 q.push(i);
-//                 while(!q.empty())
-//                 {
-//                     int u = q.front();
-//                     q.pop();
-//                     if(vis[u]==1)
-//                         continue;
-//                     vis[u]=1;
-//                     for(int v:graph[u])
-//                     {
-//                         if(color[v]==color[u])
-//                             return false;
-//                         if(color[u]==0)
-//                             color[v]=1;
-//                         else
-//                             color[v]=0;
-//                         q.push(v);
-//                     }
-//                 }
-//             }
-//         }
-//         return true;
-        if(check(graph,n))
-            return true;
-        else
-            return false;
+        return check(graph,n);
+        
     }
 };
