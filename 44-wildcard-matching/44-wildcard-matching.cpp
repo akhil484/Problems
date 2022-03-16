@@ -27,7 +27,7 @@ public:
             
             for(int j=1;j<=m;j++)
             {
-                cur[0] = false;
+                
                 if(s[i-1]==p[j-1]||p[j-1]=='?')
                     cur[j] = prev[j-1];
                 else if(p[j-1]=='*')
