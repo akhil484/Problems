@@ -8,6 +8,6 @@ public:
             right=right>>1;
             step++;
         }
-        return left<<step;
+        return right<<step;
     }
 };
