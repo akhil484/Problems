@@ -5,33 +5,29 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
-    
-    int calc(vector<vector<int>> &dp, int n, int m)
+    void print(vector<vector<int>> &dp, int n, int m)
     {
         for(int i=0;i<n;i++)
         {
-            if(dp[i][0]==0)
-                dp[i][0]=1;
-            else 
-                break;
+            for(int j=0;j<m;j++)
+                cout<<dp[i][j];
+            cout<<endl;
         }
-        for(int i=1;i<m;i++)
-        {
-            if(dp[0][i]==0)
-                dp[0][i]=1;
-            else 
-                break;
-        }
+        cout<<"end";
+    }
+    
+    int calc(vector<vector<int>> &dp, int n, int m)
+    {
         
-        for(int i=1;i<n;i++)
+        for(int i=0;i<n;i++)
         {
-            for(int j=1;j<m;j++)
+            for(int j=0;j<m;j++)
             {
                 if(dp[i][j]==-1)
                     continue;
-                if(dp[i-1][j]>0)
+                if(i-1>=0&&dp[i-1][j]>0)
                     dp[i][j] = (dp[i][j]+dp[i-1][j])%1000000007;
-                if(dp[i][j-1]>0)
+                if(j-1>=0&&dp[i][j-1]>0)
                     dp[i][j] = (dp[i][j]+dp[i][j-1])%1000000007;
             }
         }
@@ -48,7 +44,7 @@ public:
 	    }
 	    if(dp[0][0]==-1)
 	        return 0;
-	    
+	    dp[0][0] = 1;
 	    return calc(dp,n,m);
 	}
 };
