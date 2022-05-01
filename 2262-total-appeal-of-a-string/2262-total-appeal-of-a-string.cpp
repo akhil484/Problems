@@ -8,6 +8,7 @@ public:
         {
             last[s[i]-'a']=i+1;
             //count all substrings ending at i which contain charater l;
+            //from all substrings we are picking no of a then b then c
             for(int l: last)
                 res+=l;
         }
