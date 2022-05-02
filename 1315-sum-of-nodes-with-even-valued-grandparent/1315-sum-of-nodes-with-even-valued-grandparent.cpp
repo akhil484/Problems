@@ -11,34 +11,19 @@
  */
 class Solution {
 public:
-    void calSum(TreeNode* root, int &sum)
+    void calSum(TreeNode* root, int &sum, TreeNode* parent,TreeNode* grandparent)
     {
         if(!root)
             return;
-        if(root->val%2==0)
-        {
-            if(root->left)
-            {
-                if(root->left->left)
-                    sum+=root->left->left->val;
-                if(root->left->right)
-                    sum+=root->left->right->val;
-            }
-            if(root->right)
-            {
-                if(root->right->left)
-                    sum+=root->right->left->val;
-                if(root->right->right)
-                    sum+=root->right->right->val;
-            }
-        }
-        calSum(root->left,sum);
-        calSum(root->right,sum);
+        if(grandparent&&grandparent->val%2==0)
+            sum+=root->val;
+        calSum(root->left, sum,root,parent);
+        calSum(root->right, sum,root,parent);
     }
     
     int sumEvenGrandparent(TreeNode* root) {
         int sum=0;
-        calSum(root, sum);
+        calSum(root, sum,NULL,NULL);
         return sum;
     }
 };
