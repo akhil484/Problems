@@ -1,4 +1,5 @@
 //TC - O(m+n)
+//check whether there is a suffix which is also a prefix in the pattern so that we don't have to start from the beginning of the pattern everytime it mismatches.
 
 class Solution {
 public:
