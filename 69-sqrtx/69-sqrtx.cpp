@@ -17,7 +17,7 @@ public:
             }
             else if(m*m>x)
                 h=m-1;
-            else if((m+1)>x/(m+1))
+            else if((m+1)>x/(m+1)) //if we check multiplication greater than x then it can be runtime error because number can become greater than 2^31-1
             {
                 res = m;
                 break;
