@@ -1,3 +1,5 @@
+//TC - O(m+n)
+
 class Solution {
 public:
     vector<int> calcP(string needle)
