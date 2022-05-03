@@ -3,6 +3,7 @@ public:
     int mySqrt(int x) {
         if(x==0||x==1)
             return x;
+        //sqrt of 2^31-1 will be 46340
         int l=0,h=46340;
         int res=0;
         while(l<=h)
