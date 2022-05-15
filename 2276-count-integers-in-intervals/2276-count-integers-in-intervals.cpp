@@ -10,8 +10,9 @@ public:
     
     void add(int left, int right) {
         auto it = st.upper_bound({left, INT_MIN});
-        if(it!=st.begin()&&(--it)->second<left)
+        if(it!=st.begin()&&(--it)->second<left) //if left is greater than prev->right then no need of previous
             ++it;
+        //we only checked the prev of it because it is the first element which have it->first greater than left and prev->first is less than left and prev->prev->second<prev->first
         while(it!=st.end()&&it->first<=right)
         {
             left=min(it->first,left);
