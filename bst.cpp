@@ -65,7 +65,7 @@ bnode *max(bnode *root)
 	{
 		while(root->right!=NULL)
 		{
-			return max(root->right);
+			root = (root->right);
 		}
 			return root;
 	}
@@ -85,7 +85,7 @@ int min(bnode *root)
 	{
 		while(root->left!=NULL)
 		{
-			return min(root->left);
+			root = (root->left);
 		}
 		return root->data;
 	}
@@ -106,7 +106,7 @@ bnode* mini(bnode *root)
 	{
 		while(root->left!=NULL)
 		{
-			return mini(root->left);
+			root = (root->left);
 		}
 		return root;
 	}
