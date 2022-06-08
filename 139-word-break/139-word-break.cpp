@@ -1,14 +1,5 @@
 class Solution {
 public:
-     bool dic_contain(string s, vector<string>& wordDict)
-                     {
-                         for(int i=0;i<wordDict.size();i++)
-                         {
-                             if(wordDict[i].compare(s)==0)
-                                 return true;
-                         }
-                         return false;
-                     }
     
     bool wordBreak(string s, vector<string>& wordDict) {
         unordered_set<string> st;
