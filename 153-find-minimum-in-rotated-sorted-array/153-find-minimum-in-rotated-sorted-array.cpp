@@ -8,7 +8,7 @@ public:
                 return nums[l];
             
             int mid = (l+h)/2;
-            if(nums[mid]>=nums[l])
+            if(nums[mid]>nums[h])
                 l=mid+1;
             else
                 h=mid;
