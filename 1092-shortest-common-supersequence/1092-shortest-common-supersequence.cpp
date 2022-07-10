@@ -45,11 +45,19 @@ public:
             }
         }
         
+        
+        while(i>0)
+        {
+            ans+=s[i-1];
+            i--;
+        }
+            
+        while(j>0)
+        {
+            ans+=t[j-1];
+            j--;
+        }
         reverse(ans.begin(),ans.end());
-        if(i>0)
-            ans=s.substr(0,i)+ans;
-        else
-            ans=t.substr(0,j)+ans;
         return ans;
     }
 };
