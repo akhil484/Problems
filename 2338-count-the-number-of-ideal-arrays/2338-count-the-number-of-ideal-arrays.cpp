@@ -29,9 +29,11 @@ public:
         bool flag=0;
         
         while(val*j<=maxV){
+            //Totally Increasing
             ans=(ans%mod+count(val*j,ind+1,n,maxV,dp,memo)%mod)%mod;
             j++;
-
+            
+            //Non-decreasing
             if(val*j>maxV){
                 ans=(ans%mod+Comb(n-1,ind-1,memo)%mod)%mod;
             }
@@ -55,8 +57,9 @@ public:
         
         long long ans=0;
         
+        //Starting Element
         for(int i=1;i<=maxV;i++)
-        ans=(ans%mod+count(i,1,n,maxV,dp,memo)%mod)%mod;
+            ans=(ans%mod+count(i,1,n,maxV,dp,memo)%mod)%mod;
         
         return ans;
     }
