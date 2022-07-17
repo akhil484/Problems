@@ -28,12 +28,23 @@ public:
         long long ans=0;
         bool flag=0;
         
+        //Multiple of Previous Value
         while(val*j<=maxV){
             //Totally Increasing
             ans=(ans%mod+count(val*j,ind+1,n,maxV,dp,memo)%mod)%mod;
             j++;
             
             //Non-decreasing
+            //Value inside the array won't matter here. The formula will be same as long as
+            //the array is non-decreasing
+            //  _ _ _ _ _ _ _ _ _ _
+            //If we have 4 elemets = {1,2,4,8}
+            //We have to create groups or somehow calculate how many 1's will we take, how many 2's will we take
+            // _ |_ _ _ |_ _ _ _ _ _
+            // All places where you can create partition and before 1st partition will be all 1,
+            //between 1-2 partition will be 2.
+            //(n-1) places to put partition and you have to choose no of elements-1
+            //Because if we have 4 elements{1.2.4.8} then we have to choose 3 places to put partitions
             if(val*j>maxV){
                 ans=(ans%mod+Comb(n-1,ind-1,memo)%mod)%mod;
             }
