@@ -14,19 +14,19 @@ public:
         
 		
         if(abs(e-s)>i) return 0;
-        if(dp[s+2000][i] != -1) {
-            return dp[s+2000][i]%M;
+        if(dp[s+1000][i] != -1) {
+            return dp[s+1000][i]%M;
         }
         
         // choices
         int left = f(s-1, e, k, i-1, dp)%M;
         int right = f(s+1, e, k, i-1, dp)%M;
         
-        return dp[s+2000][i] = (left + right)%M;
+        return dp[s+1000][i] = (left + right)%M;
     }
     
     int numberOfWays(int s, int e, int k) {
-        vector<vector<int>> dp(4001, vector<int>(1005, -1));
+        vector<vector<int>> dp(3020, vector<int>(1005, -1));
         return f(s, e, k, k, dp);
     }
 };
