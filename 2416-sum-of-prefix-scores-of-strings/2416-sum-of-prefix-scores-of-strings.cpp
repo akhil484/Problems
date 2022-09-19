@@ -58,9 +58,12 @@ public:
             int sum = 0;
             for(int i=0;i<word.size();i++)
             {
+                if(node->containKey(word[i]))
+                {
+                    node = node->getNext(word[i]);
+                    sum+=node->getPrefix();
+                }
                 
-                node = node->getNext(word[i]);
-                sum+=node->getPrefix();
                
             }
             return sum;
