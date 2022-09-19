@@ -63,6 +63,8 @@ public:
                     node = node->getNext(word[i]);
                     sum+=node->getPrefix();
                 }
+                else
+                    return sum;
                 
                
             }
